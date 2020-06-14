@@ -1,4 +1,4 @@
-<project name="Sim" default="dist" basedir=".">
+<project name="Sim" default="dist" basedir="C:\CodeProjects\N6\Cards\Sim">
   <description>
     simple example build file
   </description>
@@ -14,19 +14,29 @@
     <mkdir dir="${build}"/>
   </target>
 
-  <target name="compile" depends="init"
-        description="compile the source">
+  <target name="build" depends="init"
+        description="build the source">
     <!-- Compile the Java code from ${src} into ${build} -->
     <javac includeantruntime="false" srcdir="${src}" destdir="${build}"/>
   </target>
 
-  <target name="dist" depends="compile"
+  <target name="dist" depends="build"
         description="generate the distribution">
     <!-- Create the distribution directory -->
     <mkdir dir="${dist}/lib"/>
 
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
     <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
+
+  <target name="run" depends="build"
+        description="Run the program">
+    <java classname="Sim" 
+      fork="true" >
+      <classpath>
+        <pathelement path="${build}" />
+      </classpath>
+    </java>
   </target>
 
   <target name="clean"
