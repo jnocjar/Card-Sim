@@ -12,17 +12,16 @@ public class WarDeck extends Deck
     @Override
     public void init() 
     {
-        int count=0;
         // Create the cards of the WarDeck
         // The deck should be a standard 4-suit all included deck
         // - no extra cards such as jokers.
         // - this is *not* a pinochle deck.
-        for (int i = 0; i < super.getSize(); i+=4)
+        for (int i = 0; i < super.getSize(); )
         {
-            _cards[i] = new Card(CardSuit.Hearts, i+2);
-            _cards[i+1] = new Card(CardSuit.Spades, i+3);
-            _cards[i+2] = new Card(CardSuit.Diamonds, i+4);
-            _cards[i+3] = new Card(CardSuit.Clubs, i+5);
+            _cards[i++] = new Card(CardSuit.Hearts, i+1);
+            _cards[i++] = new Card(CardSuit.Spades, i+1);
+            _cards[i++] = new Card(CardSuit.Diamonds, i+1);
+            _cards[i++] = new Card(CardSuit.Clubs, i+1);
         }
     }
 
